@@ -1,4 +1,4 @@
-# Course Video Downloader
+# Media Library Video Downloader
 
 A Flask + yt-dlp web app with a Poppins UI, Font Awesome icons, live download progress, downloaded-video list, and ZIP export.
 
