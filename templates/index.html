@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Video Downloader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero card">
+      <div>
+        <p class="eyebrow"><i class="fa-solid fa-cloud-arrow-down"></i> Flask + yt-dlp</p>
+        <h1>Course Video Downloader</h1>
+        <p class="subtitle">Download your video list, watch live progress, then export everything as one ZIP file.</p>
+      </div>
+      <div class="hero-stat">
+        <span id="totalUrls">{{ total_urls }}</span>
+        <small>Total URLs</small>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card control-card">
+        <div class="card-title">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Download Progress</span>
+        </div>
+
+        <div class="progress-ring-wrap">
+          <div class="progress-ring" id="progressRing">0%</div>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="status-row">
+          <div>
+            <small>Status</small>
+            <strong id="statusText">Idle</strong>
+          </div>
+          <div>
+            <small>Done</small>
+            <strong><span id="doneText">0</span>/<span id="totalText">0</span></strong>
+          </div>
+        </div>
+
+        <p class="current" id="currentText">Ready to download</p>
+
+        <div class="meta-row">
+          <span><i class="fa-solid fa-bolt"></i> Speed: <b id="speedText">0</b></span>
+          <span><i class="fa-regular fa-clock"></i> ETA: <b id="etaText">0</b></span>
+        </div>
+
+        <div class="actions">
+          <button id="startBtn" class="btn primary"><i class="fa-solid fa-play"></i> Start Download</button>
+          <a class="btn secondary" href="/zip"><i class="fa-solid fa-file-zipper"></i> Download ZIP</a>
+        </div>
+        <p class="note">Only download videos you own or have permission to save. DRM/protected videos may not download.</p>
+      </div>
+
+      <div class="card list-card">
+        <div class="card-title between">
+          <span><i class="fa-solid fa-circle-check"></i> Downloaded Videos</span>
+          <button id="refreshBtn" class="mini-btn"><i class="fa-solid fa-rotate"></i></button>
+        </div>
+        <div id="downloadList" class="download-list empty">
+          <i class="fa-regular fa-folder-open"></i>
+          <p>No videos downloaded yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card failed-card" id="failedCard" hidden>
+      <div class="card-title"><i class="fa-solid fa-triangle-exclamation"></i> Failed URLs</div>
+      <ul id="failedList"></ul>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
